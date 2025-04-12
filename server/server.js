@@ -4,6 +4,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 const morgan = require("morgan");
 const connectDB = require("./config/db");
+const initRoute = require("./routes");
 
 const app = express();
 
@@ -12,7 +13,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
-
+initRoute(app);
 const PORT = process.env.PORT || 8080;
 app.get("/", (req, res) => {
   res.send("Con me may");
